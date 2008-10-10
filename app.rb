@@ -6,7 +6,7 @@ DataMapper.setup :default, "sqlite3:///tmp/dm-exampleapp.sqlite3.db"
 
 puts <<-EOF
 
-Welcome to the DM Example application.  This script demonstrates the concepts shown at 
+Welcome to the DM Example application.  This script demonstrates the concepts shown at
 
 http://datamapper.org
 
