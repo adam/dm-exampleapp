@@ -18,6 +18,7 @@ DataMapper.setup :default, 'sqlite3::memory:'
 [ Animal, Dragon, Fruit, Person, Tree, Zoo ].each { |m| m.auto_migrate! }
 
 Tree.setup
+Animal.setup
 
 puts <<-EOF
 
@@ -27,6 +28,7 @@ http://www.datamapper.org/why.html
 
 EOF
 
+puts '-' * 80
 puts 'Identity Map'
 
 repository do
@@ -35,4 +37,12 @@ repository do
   @parent.children.each do |child|
     puts @parent.object_id == child.parent.object_id
   end
+end
+
+puts '-' * 80
+puts 'Laziness Can Be A Virtue'
+
+animals = Animal.all
+animals.each do |pet|
+  puts pet.notes
 end

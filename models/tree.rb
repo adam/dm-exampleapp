@@ -7,8 +7,6 @@ class Tree
   has n, :children, :class_name => 'Tree'
 
   def self.setup
-    auto_migrate!
-
     bob = Tree.create(:name => 'bob')
 
     bob.children.create(:name => 'jim')
