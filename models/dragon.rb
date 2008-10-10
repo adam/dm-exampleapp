@@ -1,4 +1,4 @@
 class Dragon
   include DataMapper::Resource
-  property :id, Integer, :serial => true
+  property :id, Serial
 end

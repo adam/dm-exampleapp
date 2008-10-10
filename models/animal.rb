@@ -1,6 +1,6 @@
 class Animal
   include DataMapper::Resource
-  property :id, Integer, :serial => true
+  property :id, Serial
   property :name, String
   property :notes, Text, :lazy => true
 

@@ -1,6 +1,6 @@
 class Tree
   include DataMapper::Resource
-  property :id,   Integer, :serial => true
+  property :id,   Serial
   property :name, String, :nullable => false
 
   belongs_to :parent, :class_name => 'Tree'

@@ -5,20 +5,23 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rubygems'
 require 'dm-core'
 
-autoload :Animal, 'models' / 'animal'
-autoload :Dragon, 'models' / 'dragon'
-autoload :Fruit,  'models' / 'fruit'
-autoload :Person, 'models' / 'person'
-autoload :Tree,   'models' / 'tree'
-autoload :Zoo,    'models' / 'zoo'
+autoload :Animal,  'models' / 'animal'
+autoload :Dragon,  'models' / 'dragon'
+autoload :Exhibit, 'models' / 'exhibit'
+autoload :Fruit,   'models' / 'fruit'
+autoload :Person,  'models' / 'person'
+autoload :Tree,    'models' / 'tree'
+autoload :Zoo,     'models' / 'zoo'
 
 DataMapper::Logger.new(STDOUT, :debug)
 DataMapper.setup :default, 'sqlite3::memory:'
 
-[ Animal, Dragon, Fruit, Person, Tree, Zoo ].each { |m| m.auto_migrate! }
+[ Animal, Dragon, Exhibit, Fruit, Person, Tree, Zoo ].each { |m| m.auto_migrate! }
 
 Tree.setup
 Animal.setup
+Zoo.setup
+Exhibit.setup
 
 puts <<-EOF
 
@@ -44,5 +47,14 @@ puts 'Laziness Can Be A Virtue'
 
 animals = Animal.all
 animals.each do |pet|
-  puts pet.notes
+  pet.notes
 end
+
+puts '-' * 80
+puts 'Strategic Eager Loading'
+
+zoos = Zoo.all
+zoos.to_a  # load the zoos
+first = zoos.first
+exhibits = first.exhibits
+exhibits.to_a  # load the exhibits
