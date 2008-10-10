@@ -13,7 +13,7 @@ class Exhibit
 
     woodland_park = Zoo.first(:name => 'Woodland Park Zoo')
     Exhibit.create(:name => 'Wolves', :zoo => woodland_park)
-    Exhibit.create(:name => 'Sea Otter', :zoo => woodland_park)
+    Exhibit.create(:name => 'Sea Otters', :zoo => woodland_park)
 
     oregon_zoo = Zoo.first(:name => 'Oregon Zoo')
     Exhibit.create(:name => 'Elephants', :zoo => oregon_zoo)

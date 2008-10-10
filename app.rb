@@ -52,7 +52,8 @@ puts '-' * 80
 puts 'Strategic Eager Loading'
 
 zoos = Zoo.all
-zoos.to_a  # load the zoos
-first = zoos.first
-exhibits = first.exhibits
-exhibits.to_a  # load the exhibits
+zoos.each do |zoo|
+  zoo.exhibits.each do |exhibit|                        # on first iteration, DM loads up all of the exhibits for all of the items in zoos
+    puts "Zoo: #{zoo.name}, Exhibit: #{exhibit.name}"   # in 1 query to the datastore
+  end
+end
