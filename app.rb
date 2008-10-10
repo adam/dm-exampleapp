@@ -6,9 +6,7 @@ require 'rubygems'
 require 'dm-core'
 
 autoload :Animal,  'models' / 'animal'
-autoload :Dragon,  'models' / 'dragon'
 autoload :Exhibit, 'models' / 'exhibit'
-autoload :Fruit,   'models' / 'fruit'
 autoload :Person,  'models' / 'person'
 autoload :Tree,    'models' / 'tree'
 autoload :Zoo,     'models' / 'zoo'
@@ -16,7 +14,7 @@ autoload :Zoo,     'models' / 'zoo'
 DataMapper::Logger.new(STDOUT, :debug)
 DataMapper.setup :default, 'sqlite3::memory:'
 
-[ Animal, Dragon, Exhibit, Fruit, Person, Tree, Zoo ].each { |m| m.auto_migrate! }
+[ Animal, Exhibit, Person, Tree, Zoo ].each { |m| m.auto_migrate! }
 
 Tree.setup
 Animal.setup
