@@ -2,7 +2,7 @@ class Animal
   include DataMapper::Resource
   property :id, Serial
   property :name, String
-  property :notes, Text, :lazy => true
+  property :notes, Text
 
   def self.setup
     Animal.create(:name => 'Dog',  :notes => "Man's best friend")
