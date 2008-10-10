@@ -17,6 +17,8 @@ DataMapper.setup :default, 'sqlite3::memory:'
 
 [ Animal, Dragon, Fruit, Person, Tree, Zoo ].each { |m| m.auto_migrate! }
 
+Tree.setup
+
 puts <<-EOF
 
 Welcome to the DM Example application.  This script demonstrates the concepts shown at
@@ -24,3 +26,13 @@ Welcome to the DM Example application.  This script demonstrates the concepts sh
 http://www.datamapper.org/why.html
 
 EOF
+
+puts 'Identity Map'
+
+repository do
+  @parent = Tree.first(:conditions => ['name = ?', 'bob'])
+
+  @parent.children.each do |child|
+    puts @parent.object_id == child.parent.object_id
+  end
+end
