@@ -53,7 +53,10 @@ puts 'Strategic Eager Loading'
 
 zoos = Zoo.all
 zoos.each do |zoo|
-  zoo.exhibits.each do |exhibit|                        # on first iteration, DM loads up all of the exhibits for all of the items in zoos
-    puts "Zoo: #{zoo.name}, Exhibit: #{exhibit.name}"   # in 1 query to the datastore
+  # on first iteration, DM loads up all of the exhibits for all of the items in zoos
+  # in 1 query to the data-store.
+  zoo.exhibits.each do |exhibit|
+    # n+1 queries in other ORMs, not in DataMapper
+    puts "Zoo: #{zoo.name}, Exhibit: #{exhibit.name}"
   end
 end
